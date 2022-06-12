@@ -46,6 +46,7 @@ class _FixturesScreenState extends State<FixturesScreen> {
                             physics:  NeverScrollableScrollPhysics(),
                             itemCount: model.fixtures!.competitions.length,
                             itemBuilder: (context, int index){
+                              model.sortEventsByStage(model.fixtures!.competitions[index].events);
                               return Center(
                                 child: CompetitionView(competition: model.fixtures!.competitions[index]),
                               );

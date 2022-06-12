@@ -14,6 +14,13 @@ class AppStyles{
     fontWeight: FontWeight.w600,
   );
 
+  static const TextStyle kLightTextStyleItalic = TextStyle(
+    color: kDefaultLightColor,
+    fontSize: 13,
+    fontWeight: FontWeight.w300,
+    // fontStyle: FontStyle.italic
+  );
+
   static const TextStyle kPrimaryTextStyle = TextStyle(
     color: kPrimaryColor,
     fontSize: 14,

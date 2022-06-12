@@ -25,6 +25,15 @@ class _IndividualEventViewState extends State<IndividualEventView> {
         child: Column(
           children: [
             Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                Text(
+                  widget.event.meta.stage,
+                  style: AppStyles.kLightTextStyleItalic,
+                ),
+              ],
+            ),
+            Row(
               children: [
                 Padding(
                   padding: const EdgeInsets.all(8.0),
