@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+// https://coolors.co/0d3b66-faf0ca-f4d35e-ee964b-f95738
 class AppStyles{
   static const TextStyle kDarkTextStyle = TextStyle(
     color: kDefaultDarkColor,
@@ -25,7 +26,8 @@ class AppStyles{
 
 
   static const Color kDefaultDarkColor = Color(0xFF27272B);
-  static const Color kPrimaryColor = Color(0xFFFAF0CA);
+  static const Color kDefaultLightColor = Color(0xFFe0f7fa);
+  static const Color kPrimaryColor = Color(0xFFF95738);
   static const Color kSecondaryColor = Colors.blue;
 
 
