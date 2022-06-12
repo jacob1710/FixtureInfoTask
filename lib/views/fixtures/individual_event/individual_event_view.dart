@@ -19,9 +19,66 @@ class _IndividualEventViewState extends State<IndividualEventView> {
         viewModelBuilder: () => IndividualEventViewViewModel(),
     onModelReady: (model) => model.init(),
     builder: (context, model, child) => Container(
-      child: Text(
-          widget.event.description,
-        style: AppStyles.kLightTextStyle,
+      color: AppStyles.kSecondaryColor,
+      child: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Column(
+          children: [
+            Row(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Image.network(
+                    model.getContestantBadgeUrl(widget.event.contestants[0].id),
+                    width: 25,
+                  ),
+                ),
+                Text(
+                    widget.event.contestants[0].name,
+                  style: AppStyles.kLightTextStyle,
+                ),
+                Spacer(),
+                Container(
+                  color: AppStyles.kPrimaryColor,
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Text(
+                      widget.event.matchDetails.scores[2].home.toString(),
+                      style: AppStyles.kLightTextStyle,
+                    ),
+                  ),
+                ),
+              ],
+            ),
+            Row(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Image.network(
+                    model.getContestantBadgeUrl(widget.event.contestants[1].id),
+                    width: 25,
+                  ),
+                ),
+                Text(
+                  widget.event.contestants[1].name,
+                  style: AppStyles.kLightTextStyle,
+                ),
+                Spacer(),
+                Container(
+                  color: AppStyles.kPrimaryColor,
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Text(
+                      widget.event.matchDetails.scores[2].home.toString(),
+                      style: AppStyles.kLightTextStyle,
+
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ],
+        ),
       ),
     ));
   }

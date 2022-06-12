@@ -7,7 +7,8 @@ import 'package:stacked/stacked.dart';
 
 class CompetitionView extends StatefulWidget {
   final Competition competition;
-  const CompetitionView({Key? key, required this.competition}) : super(key: key);
+  const CompetitionView({Key? key, required this.competition})
+      : super(key: key);
 
   @override
   State<CompetitionView> createState() => _CompetitionViewState();
@@ -18,26 +19,41 @@ class _CompetitionViewState extends State<CompetitionView> {
   Widget build(BuildContext context) {
     return ViewModelBuilder<CompetitionViewViewModel>.reactive(
         viewModelBuilder: () => CompetitionViewViewModel(),
-    onModelReady: (model) => model.init(),
-    builder: (context, model, child) => Container(
-      color: AppStyles.kSecondaryColor,
-      child: Column(
-        children: [
-          Text(
-              widget.competition.name
-            ),
-          ListView.builder(
-              shrinkWrap: true,
-              physics:  NeverScrollableScrollPhysics(),
-              itemCount: widget.competition.events.length,
-              itemBuilder: (context, int eventIndex){
-                return IndividualEventView(
-                    event: widget.competition.events[eventIndex]
-                );
-              }
-          ),
-        ],
-      ),
-    ));
+        onModelReady: (model) => model.init(),
+        builder: (context, model, child) => Card(
+              color: AppStyles.kSecondaryColor,
+              child: Column(
+                children: [
+                  ExpansionTile(
+                    initiallyExpanded: true,
+                      title: Row(
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Image.network(
+                              model.getCompBadgeUrl(widget.competition.id),
+                              width: 25,
+                            ),
+                          ),
+                          Text(
+                            widget.competition.name,
+                            style: AppStyles.kHeadingTextStyle,
+                          ),
+                        ],
+                      ),
+                      children: [
+                        ListView.builder(
+                            shrinkWrap: true,
+                            physics: NeverScrollableScrollPhysics(),
+                            itemCount: widget.competition.events.length,
+                            itemBuilder: (context, int eventIndex) {
+                              return IndividualEventView(
+                                  event: widget.competition.events[eventIndex]);
+                            }),
+                      ],
+                  ),
+                ],
+              ),
+            ));
   }
 }

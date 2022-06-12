@@ -20,7 +20,7 @@ class AppStyles{
     fontWeight: FontWeight.w600,
   );
   static const TextStyle kHeadingTextStyle = TextStyle(
-    color: kDefaultDarkColor,
+    color: kDefaultLightColor,
     fontSize: 18,
     fontWeight: FontWeight.bold,
   );
@@ -33,8 +33,9 @@ class AppStyles{
 
   static const Color kDefaultDarkColor = Color(0xFF27272B);
   static const Color kDefaultLightColor = Color(0xFFe0f7fa);
-  static const Color kPrimaryColor = Color(0xFFF95738);
-  static const Color kSecondaryColor = Colors.blue;
+  static const Color kPrimaryColor = Color(0xFF091015);
+  static const Color kSecondaryColor = Color(0xFF0D1A28);
+
 
 
   //https://medium.com/@filipvk/creating-a-custom-color-swatch-in-flutter-554bcdcb27f3

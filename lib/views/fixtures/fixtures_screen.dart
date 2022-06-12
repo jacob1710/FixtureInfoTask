@@ -26,7 +26,7 @@ class _FixturesScreenState extends State<FixturesScreen> {
               appBar: AppBar(
                 title: const Text('Fixture Info'),
               ),
-              backgroundColor: AppStyles.kDefaultLightColor,
+              backgroundColor: AppStyles.kDefaultDarkColor,
               body: FutureBuilder(
                 future: model.apiService.getFixtures(DateTime.now()),
                 builder: (
@@ -47,10 +47,7 @@ class _FixturesScreenState extends State<FixturesScreen> {
                             itemCount: model.fixtures!.competitions.length,
                             itemBuilder: (context, int index){
                               return Center(
-                                child: Padding(
-                                  padding: const EdgeInsets.all(8.0),
-                                  child: CompetitionView(competition: model.fixtures!.competitions[index])
-                                ),
+                                child: CompetitionView(competition: model.fixtures!.competitions[index]),
                               );
                             }
                           )
