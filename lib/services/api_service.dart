@@ -24,11 +24,8 @@ class ApiService {
       await _client.get(endpoint);
       if (response.statusCode == 200) {
         try {
-          print(response.body);
-          var body = json.decode(response.body);
-          print(body);
+          var body = json.decode(utf8.decode(response.bodyBytes));
           var fixtures = Fixtures.fromJson(body);
-          print("Found Fixtures: $fixtures");
           return fixtures;
         } catch (e) {
           print(e.toString());
