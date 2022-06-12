@@ -12,7 +12,7 @@ class Event{
   late String status;
   late MatchDetails matchDetails;
 
-  Event.FromJson(Map<String, dynamic> json){
+  Event.fromJson(Map<String, dynamic> json){
     id = json['id'];
     if (json['contestant'] != null){
       contestants = <Contestant>[];

@@ -12,7 +12,7 @@ class Competition{
     if(json['events'] != null){
       events = <Event>[];
       json['events'].forEach((v){
-        events.add(Event.FromJson(v));
+        events.add(Event.fromJson(v));
       });
     }
   }

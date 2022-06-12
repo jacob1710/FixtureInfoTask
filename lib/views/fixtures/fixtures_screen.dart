@@ -1,5 +1,6 @@
 import 'package:fixture_info_task/constants/app_styles.dart';
 import 'package:fixture_info_task/models/Fixtures.dart';
+import 'package:fixture_info_task/views/fixtures/competitions/competition_view.dart';
 import 'package:fixture_info_task/views/fixtures/fixtures_screen_view_model.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
@@ -44,27 +45,11 @@ class _FixturesScreenState extends State<FixturesScreen> {
                             shrinkWrap: true,
                             physics:  NeverScrollableScrollPhysics(),
                             itemCount: model.fixtures!.competitions.length,
-                            itemBuilder: (context, int compIndex){
+                            itemBuilder: (context, int index){
                               return Center(
                                 child: Padding(
                                   padding: const EdgeInsets.all(8.0),
-                                  child: Column(
-                                    children: [
-                                      Text(
-                                          model.fixtures!.competitions[compIndex].name
-                                      ),
-                                    ListView.builder(
-                                        shrinkWrap: true,
-                                        physics:  NeverScrollableScrollPhysics(),
-                                      itemCount: model.fixtures!.competitions[compIndex].events.length,
-                                      itemBuilder: (context, int eventIndex){
-                                        return Text(
-                                            model.fixtures!.competitions[compIndex].events[eventIndex].description
-                                        );
-                                      }
-                                    ),
-                                    ],
-                                  ),
+                                  child: CompetitionView(competition: model.fixtures!.competitions[index])
                                 ),
                               );
                             }

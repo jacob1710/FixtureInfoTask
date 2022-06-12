@@ -8,6 +8,12 @@ class AppStyles{
     fontWeight: FontWeight.w600,
   );
 
+  static const TextStyle kLightTextStyle = TextStyle(
+    color: kDefaultLightColor,
+    fontSize: 14,
+    fontWeight: FontWeight.w600,
+  );
+
   static const TextStyle kPrimaryTextStyle = TextStyle(
     color: kPrimaryColor,
     fontSize: 14,
