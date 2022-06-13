@@ -30,6 +30,7 @@ class MyApp extends StatelessWidget {
       ),
       navigatorKey: locator<NavigationService>().navigationKey,
       onGenerateRoute: generateRoute,
+      debugShowCheckedModeBanner: false,
     );
   }
 }

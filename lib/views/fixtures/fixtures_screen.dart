@@ -27,87 +27,114 @@ class _FixturesScreenState extends State<FixturesScreen> {
         builder: (context, model, child) => Scaffold(
               appBar: AppBar(
                 title: Text('Fixture Info'),
-              ),
-              backgroundColor: AppStyles.kDefaultDarkColor,
-              body: SingleChildScrollView(
-                physics: const AlwaysScrollableScrollPhysics(),
-                controller: _controller,
-                child: Column(
-                  children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        MaterialButton(
-                          onPressed: (){
-                            setState(() {
-                              date = date.subtract(Duration(days: 1));
-                            });
-                          },
-                          child: Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Text('${model.getDateInFormat(date.subtract(Duration(days: 1)))}', style: AppStyles.kLightTextStyleItalic,),
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Text('${model.getDateInFormat(date)}',style: AppStyles.kLightTextStyle,),
-                        ),
-                        MaterialButton(
-                          onPressed: (){
-                            setState(() {
-                              date = date.add(Duration(days: 1));
-                            });
-                          },
-                          child: Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Text('${model.getDateInFormat(date.add(Duration(days: 1)))}',style: AppStyles.kLightTextStyleItalic,),
-                          ),
-                        )
-                      ],
-                    ),
-                    FutureBuilder(
-                      future: model.apiService.getFixtures(date),
-                      builder: (
-                      BuildContext context,
-                      AsyncSnapshot<Fixtures?> snapshot,
-                    ) {
-                        if(snapshot.hasData){
-                          model.fixtures = snapshot.data!;
-                          if (model.fixtures != null){
-                            if(model.fixtures!.competitions.isNotEmpty) {
-                              return Column(
-                                children: [
-                                  ListView.builder(
-                                      shrinkWrap: true,
-                                      physics: NeverScrollableScrollPhysics(),
-                                      itemCount: model.fixtures!.competitions
-                                          .length,
-                                      itemBuilder: (context, int index) {
-                                        model.sortEventsByStage(
-                                            model.fixtures!.competitions[index]
-                                                .events);
-                                        return Center(
-                                          child: CompetitionView(
-                                              competition: model.fixtures!
-                                                  .competitions[index]),
-                                        );
-                                      }
-                                  )
-                                ],
-                              );
-                            }else{
-                              return EmptyFixtureList();
-                            }
-                          }else{
-                            return EmptyFixtureList();
-                          }
-                        }else{
-                          return LoadingWidget();
+                actions: [
+                  IconButton(
+                      onPressed: () async {
+                        DateTime? datePicked = await showDatePicker(
+                            context: context,
+                            initialDate:  DateTime.now(),
+                            firstDate:  DateTime.now().subtract(Duration(days: 365)),
+                            lastDate: DateTime.now().add(Duration(days: 30))
+                        );
+                        print(datePicked);
+                        if (datePicked != null){
+                          setState(() {
+                            date = datePicked;
+                          });
                         }
                       },
+                      icon: Icon(Icons.calendar_month)
+                  )
+                ],
+              ),
+              backgroundColor: AppStyles.kDefaultDarkColor,
+              body: Column(
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      MaterialButton(
+                        onPressed: (){
+                          setState(() {
+                            date = date.subtract(Duration(days: 1));
+                            _controller.jumpTo(0);
+                          });
+                        },
+                        child: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Text('${model.getDateInFormat(date.subtract(Duration(days: 1)))}', style: AppStyles.kLightTextStyleItalic,),
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Text('${model.getDateInFormat(date)}',style: AppStyles.kLightTextStyle,),
+                      ),
+                      MaterialButton(
+                        onPressed: (){
+                          setState(() {
+                            date = date.add(Duration(days: 1));
+                            _controller.jumpTo(0);
+                          });
+                        },
+                        child: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Text('${model.getDateInFormat(date.add(Duration(days: 1)))}',style: AppStyles.kLightTextStyleItalic,),
+                        ),
+                      )
+                    ],
+                  ),
+                  Expanded(
+                    child: SingleChildScrollView(
+                      physics: const AlwaysScrollableScrollPhysics(),
+                      controller: _controller,
+                      child: Column(
+                        children: [
+                          FutureBuilder(
+                            future: model.apiService.getFixtures(date),
+                            builder: (
+                            BuildContext context,
+                            AsyncSnapshot<Fixtures?> snapshot,
+                          ) {
+                              if(snapshot.hasData){
+                                model.fixtures = snapshot.data!;
+                                if (model.fixtures != null){
+                                  if(model.fixtures!.competitions.isNotEmpty) {
+                                    return Column(
+                                      children: [
+                                        ListView.builder(
+                                            shrinkWrap: true,
+                                            physics: NeverScrollableScrollPhysics(),
+                                            itemCount: model.fixtures!.competitions
+                                                .length,
+                                            itemBuilder: (context, int index) {
+                                              model.sortEventsByStage(
+                                                  model.fixtures!.competitions[index]
+                                                      .events);
+                                              return Center(
+                                                child: CompetitionView(
+                                                    competition: model.fixtures!
+                                                        .competitions[index]),
+                                              );
+                                            }
+                                        )
+                                      ],
+                                    );
+                                  }else{
+                                    return EmptyFixtureList();
+                                  }
+                                }else{
+                                  return EmptyFixtureList();
+                                }
+                              }else{
+                                return LoadingWidget();
+                              }
+                            },
+                          ),
+                        ],
+                      ),
                     ),
-                  ],
-                ),
+                  ),
+                ],
               ),
             )
     );

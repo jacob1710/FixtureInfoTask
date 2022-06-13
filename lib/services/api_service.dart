@@ -1,3 +1,4 @@
+import 'package:fixture_info_task/utils/date_formatter.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'dart:io';
@@ -14,11 +15,7 @@ class ApiService {
     print('ApiService.getFixtures');
     try {
 
-      // Formatting the date in ISO8601 standards with just the year-month-day
-      // Making sure the month and day include the 0 if only one digit
-      var formattedDate = '${date.year}-${date.month.toString().padLeft(2, '0')}-${date.day.toString().padLeft(2, '0')}';
-
-      var endpoint = Uri.parse(_fixtureEndpoint+formattedDate);
+      var endpoint = Uri.parse(_fixtureEndpoint+DateFormatter.getDateInYMD(date));
       print(endpoint);
       var response =
       await _client.get(endpoint);

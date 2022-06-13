@@ -28,16 +28,16 @@ class _CompetitionViewState extends State<CompetitionView> {
                     initiallyExpanded: true,
                       title: Row(
                         children: [
+                          Image.network(
+                            model.getCompBadgeUrl(widget.competition.id),
+                            width: 25,
+                          ),
                           Padding(
                             padding: const EdgeInsets.all(8.0),
-                            child: Image.network(
-                              model.getCompBadgeUrl(widget.competition.id),
-                              width: 25,
+                            child: Text(
+                              widget.competition.name,
+                              style: AppStyles.kHeadingTextStyle,
                             ),
-                          ),
-                          Text(
-                            widget.competition.name,
-                            style: AppStyles.kHeadingTextStyle,
                           ),
                         ],
                       ),

@@ -1,5 +1,6 @@
 import 'package:fixture_info_task/constants/app_styles.dart';
 import 'package:fixture_info_task/models/Event.dart';
+import 'package:fixture_info_task/utils/date_formatter.dart';
 import 'package:fixture_info_task/views/fixtures/individual_event/individual_event_view_view_model.dart';
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
@@ -13,8 +14,10 @@ class IndividualEventView extends StatefulWidget {
 }
 
 class _IndividualEventViewState extends State<IndividualEventView> {
+
   @override
   Widget build(BuildContext context) {
+    var screenWidth = MediaQuery.of(context).size.width;
     return ViewModelBuilder<IndividualEventViewViewModel>.reactive(
         viewModelBuilder: () => IndividualEventViewViewModel(),
     onModelReady: (model) => model.init(),
@@ -25,11 +28,22 @@ class _IndividualEventViewState extends State<IndividualEventView> {
         child: Column(
           children: [
             Row(
-              mainAxisAlignment: MainAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Text(
-                  widget.event.meta.stage,
-                  style: AppStyles.kLightTextStyleItalic,
+                Expanded(
+                 flex: 4,
+                  child: Text(
+                    widget.event.meta.stage,
+                    style: AppStyles.kLightTextStyleItalic,
+                  ),
+                ),
+                Expanded(
+                  flex: 1,
+                  child: Text(
+                    DateFormatter.getTimeInHM(widget.event.date)+' - FT',
+                    style: AppStyles.kLightTextStyleItalic,
+                    textAlign: TextAlign.end,
+                  ),
                 ),
               ],
             ),
