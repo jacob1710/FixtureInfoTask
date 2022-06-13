@@ -1,8 +1,6 @@
-# fixture_info_task
+# Fixture Information Task App
 
-Fixture Information Task App
 
-## Getting Started
 
 This app displays the completed fixture results of football matches using the checkd.dev API. The fantasyiteam API is used for competition and team badges. The screenshots below show the app UI.
 
