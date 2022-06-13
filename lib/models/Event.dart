@@ -25,6 +25,7 @@ class Event{
     meta = Competition.fromJson(json['meta']);
     status = json['status'];
     matchDetails = MatchDetails.fromJson(json['liveData']['matchDetails']);
+
   }
   @override
   String toString() {
