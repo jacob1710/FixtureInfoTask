@@ -4,13 +4,12 @@ Fixture Information Task App
 
 ## Getting Started
 
-This project is a starting point for a Flutter application.
+This app displays the completed fixture results of football matches using the checkd.dev API. The fantasyiteam API is used for competition and team badges. The screenshots below show the app UI.
 
-A few resources to get you started if this is your first Flutter project:
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+![Fixtures Task Screenshot 1](https://user-images.githubusercontent.com/25490095/173336730-497573a8-98e0-4d13-8989-3def1488d26d.png)
+
+![Fixtures Task Screenshot 3](https://user-images.githubusercontent.com/25490095/173336834-348af430-d86e-488a-a502-f3d17ef46dee.png)
+
+![Fixtures Task Screenshot 2](https://user-images.githubusercontent.com/25490095/173336853-ef1e7651-e16d-479d-95fb-8d5b49bc15d1.png)
