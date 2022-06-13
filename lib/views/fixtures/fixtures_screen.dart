@@ -32,14 +32,15 @@ class _FixturesScreenState extends State<FixturesScreen> {
                       onPressed: () async {
                         DateTime? datePicked = await showDatePicker(
                             context: context,
-                            initialDate:  DateTime.now(),
+                            initialDate:  date,
                             firstDate:  DateTime.now().subtract(Duration(days: 365)),
-                            lastDate: DateTime.now().add(Duration(days: 30))
+                            lastDate: DateTime.now().add(Duration(days: 7))
                         );
                         print(datePicked);
                         if (datePicked != null){
                           setState(() {
                             date = datePicked;
+                            _controller.jumpTo(0);
                           });
                         }
                       },

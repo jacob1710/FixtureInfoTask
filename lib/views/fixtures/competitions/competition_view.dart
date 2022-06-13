@@ -25,6 +25,10 @@ class _CompetitionViewState extends State<CompetitionView> {
               child: Column(
                 children: [
                   ExpansionTile(
+                    // sets the color of the arrow when collapsed
+                    collapsedIconColor: Colors.white,
+                    // sets the color of the arrow when expanded
+                    iconColor: Colors.white,
                     initiallyExpanded: true,
                       title: Row(
                         children: [

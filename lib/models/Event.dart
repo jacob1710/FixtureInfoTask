@@ -26,5 +26,8 @@ class Event{
     status = json['status'];
     matchDetails = MatchDetails.fromJson(json['liveData']['matchDetails']);
   }
-
+  @override
+  String toString() {
+    return 'id: ${id} desc: ${description} status: ${status}';
+  }
 }

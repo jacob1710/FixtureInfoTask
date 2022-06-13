@@ -2,6 +2,7 @@ import 'package:fixture_info_task/constants/app_styles.dart';
 import 'package:fixture_info_task/models/Event.dart';
 import 'package:fixture_info_task/utils/date_formatter.dart';
 import 'package:fixture_info_task/views/fixtures/individual_event/individual_event_view_view_model.dart';
+import 'package:fixture_info_task/widgets/loading_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
 
@@ -54,6 +55,10 @@ class _IndividualEventViewState extends State<IndividualEventView> {
                   child: Image.network(
                     model.getContestantBadgeUrl(widget.event.contestants[0].id),
                     width: 25,
+                    errorBuilder:
+                        (BuildContext context, Object exception, StackTrace? stackTrace) {
+                      return const Icon(Icons.sports_soccer, color: Colors.white,);
+                    },
                   ),
                 ),
                 Text(
@@ -66,7 +71,7 @@ class _IndividualEventViewState extends State<IndividualEventView> {
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: Text(
-                      widget.event.matchDetails.scores[2].home.toString(),
+                      widget.event.matchDetails.scores['ft']!.home.toString(),
                       style: AppStyles.kLightTextStyle,
                     ),
                   ),
@@ -80,6 +85,10 @@ class _IndividualEventViewState extends State<IndividualEventView> {
                   child: Image.network(
                     model.getContestantBadgeUrl(widget.event.contestants[1].id),
                     width: 25,
+                    errorBuilder:
+                        (BuildContext context, Object exception, StackTrace? stackTrace) {
+                          return const Icon(Icons.sports_soccer, color: Colors.white,);
+                    },
                   ),
                 ),
                 Text(
@@ -92,9 +101,8 @@ class _IndividualEventViewState extends State<IndividualEventView> {
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: Text(
-                      widget.event.matchDetails.scores[2].home.toString(),
+                      widget.event.matchDetails.scores['ft']!.away.toString(),
                       style: AppStyles.kLightTextStyle,
-
                     ),
                   ),
                 ),
