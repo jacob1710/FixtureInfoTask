@@ -10,7 +10,8 @@ import 'package:stacked/stacked.dart';
 import '../../widgets/loading_widget.dart';
 
 class FixturesScreen extends StatefulWidget {
-  const FixturesScreen({Key? key}) : super(key: key);
+  FixturesScreen({Key? key, required this.flavor}) : super(key: key);
+  final String flavor;
 
   @override
   State<FixturesScreen> createState() => _FixturesScreenState();
@@ -26,7 +27,7 @@ class _FixturesScreenState extends State<FixturesScreen> {
         onModelReady: (model) => model.init(),
         builder: (context, model, child) => Scaffold(
               appBar: AppBar(
-                title: Text('Fixture Info'),
+                title: Text(widget.flavor),
                 actions: [
                   IconButton(
                       onPressed: () async {
