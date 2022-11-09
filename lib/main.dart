@@ -12,6 +12,7 @@ import 'locator.dart';
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await setUpLocator();
+  
   var flavor = await MethodChannel('flavor').invokeMethod<String>('getFlavor');
   runApp(MyApp(flavor: flavor));
 }
