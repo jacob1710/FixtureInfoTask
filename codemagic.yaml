@@ -52,6 +52,7 @@ workflows:
       - build/**/outputs/bundle/**/*.aab
       - build/**/outputs/**/mapping.txt
       - build/ios/ipa/*.ipa
+      - build/ios/iphoneos/*.app
       - /tmp/xcodebuild_logs/*.log
       - '*.snap'
       - build/windows/**/*.msix
@@ -110,6 +111,7 @@ workflows:
       - build/**/outputs/bundle/**/*.aab
       - build/**/outputs/**/mapping.txt
       - build/ios/ipa/*.ipa
+      - build/ios/iphoneos/*.app
       - /tmp/xcodebuild_logs/*.log
       - '*.snap'
       - build/windows/**/*.msix
