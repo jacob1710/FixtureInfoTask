@@ -47,6 +47,8 @@ workflows:
           --ks-pass android \
           --ks-key-alias androiddebugkey \
           --key-pass android
+      - flutter build apk --debug --flavor DEV
+
     artifacts:
       - build/**/outputs/apk/**/*.apk
       - build/**/outputs/bundle/**/*.aab
@@ -106,6 +108,7 @@ workflows:
           --ks-pass android \
           --ks-key-alias androiddebugkey \
           --key-pass android
+      - flutter build apk --debug --flavor DEV
     artifacts:
       - build/**/outputs/apk/**/*.apk
       - build/**/outputs/bundle/**/*.aab
