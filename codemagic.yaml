@@ -21,7 +21,7 @@ workflows:
           include: true
     scripts:
       - find . -name "Podfile" -execdir pod install \;
-      - flutter build ios --debug --no-codesign --flavor PROD
+      - flutter build ios --debug --no-codesign --flavor prod
       - |
         # set up debug keystore
         rm -f ~/.android/debug.keystore
@@ -38,7 +38,7 @@ workflows:
         # set up local properties
         echo "flutter.sdk=$HOME/programs/flutter" > "$FCI_BUILD_DIR/android/local.properties"
       - flutter packages pub get
-      - flutter build appbundle --debug --flavor PROD
+      - flutter build appbundle --debug --flavor prod
       - |
         # generate universal apk signed with debug key
         android-app-bundle build-universal-apk \
@@ -47,7 +47,7 @@ workflows:
           --ks-pass android \
           --ks-key-alias androiddebugkey \
           --key-pass android
-      - flutter build apk --debug --flavor DEV
+      - flutter build apk --debug --flavor prod
 
     artifacts:
       - build/**/outputs/apk/**/*.apk
@@ -82,7 +82,7 @@ workflows:
           include: true
     scripts:
       - find . -name "Podfile" -execdir pod install \;
-      - flutter build ios --debug --no-codesign --flavor DEV
+      - flutter build ios --debug --no-codesign --flavor dev
       - |
         # set up debug keystore
         rm -f ~/.android/debug.keystore
@@ -99,7 +99,7 @@ workflows:
         # set up local properties
         echo "flutter.sdk=$HOME/programs/flutter" > "$FCI_BUILD_DIR/android/local.properties"
       - flutter packages pub get
-      - flutter build appbundle --debug --flavor DEV
+      - flutter build appbundle --debug --flavor dev
       - |
         # generate universal apk signed with debug key
         android-app-bundle build-universal-apk \
@@ -108,7 +108,7 @@ workflows:
           --ks-pass android \
           --ks-key-alias androiddebugkey \
           --key-pass android
-      - flutter build apk --debug --flavor DEV
+      - flutter build apk --debug --flavor dev
     artifacts:
       - build/**/outputs/apk/**/*.apk
       - build/**/outputs/bundle/**/*.aab
