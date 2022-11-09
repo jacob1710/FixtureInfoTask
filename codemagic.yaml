@@ -78,6 +78,8 @@ workflows:
         - pattern: '*'
           include: true
     scripts:
+      - find . -name "Podfile" -execdir pod install \;
+      - flutter build ios --debug --no-codesign --flavor DEV
       - |
         # set up debug keystore
         rm -f ~/.android/debug.keystore
@@ -103,8 +105,6 @@ workflows:
           --ks-pass android \
           --ks-key-alias androiddebugkey \
           --key-pass android
-      - find . -name "Podfile" -execdir pod install \;
-      - flutter build ios --debug --no-codesign --flavor DEV
     artifacts:
       - build/**/outputs/apk/**/*.apk
       - build/**/outputs/bundle/**/*.aab
