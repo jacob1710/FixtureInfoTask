@@ -11,14 +11,15 @@ workflows:
       cocoapods: default
     triggering:
       events:
-        - push
+        - tag
       branch_patterns:
         - pattern: '*test*'
           include: true
           source: true
       tag_patterns:
-        - pattern: '*'
+        - pattern: '*test*'
           include: true
+          source: true
     scripts:
       - find . -name "Podfile" -execdir pod install \;
       - flutter build ios --debug --no-codesign --flavor prod
@@ -72,14 +73,15 @@ workflows:
       cocoapods: default
     triggering:
       events:
-        - push
+        - tag
       branch_patterns:
         - pattern: '*develop*'
           include: true
           source: true
       tag_patterns:
-        - pattern: '*'
+        - pattern: '*develop*'
           include: true
+          source: true
     scripts:
       - find . -name "Podfile" -execdir pod install \;
       - flutter build ios --debug --no-codesign --flavor dev
