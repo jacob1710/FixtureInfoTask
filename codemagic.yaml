@@ -11,13 +11,13 @@ workflows:
       cocoapods: default
     triggering:
       events:
-        - push
+        - tag
       branch_patterns:
         - pattern: '*test*'
           include: true
           source: true
       tag_patterns:
-        - pattern: '*'
+        - pattern: '*test*'
           include: true
     scripts:
       - find . -name "Podfile" -execdir pod install \;
@@ -72,13 +72,13 @@ workflows:
       cocoapods: default
     triggering:
       events:
-        - push
+        - tag
       branch_patterns:
         - pattern: '*develop*'
           include: true
           source: true
       tag_patterns:
-        - pattern: '*'
+        - pattern: '*develop*'
           include: true
     scripts:
       - find . -name "Podfile" -execdir pod install \;
