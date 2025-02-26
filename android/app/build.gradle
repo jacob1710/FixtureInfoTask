@@ -27,6 +27,7 @@ apply from: "$flutterRoot/packages/flutter_tools/gradle/flutter.gradle"
 
 android {
     compileSdkVersion flutter.compileSdkVersion
+    ndkVersion flutter.ndkVersion
 
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
@@ -44,7 +45,8 @@ android {
     defaultConfig {
         // TODO: Specify your own unique Application ID (https://developer.android.com/studio/build/application-id.html).
         applicationId "com.example.fixture_info_task"
-        minSdkVersion flutter.minSdkVersion
+        minSdkVersion 21
+        compileSdkVersion 33
         targetSdkVersion flutter.targetSdkVersion
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
@@ -58,16 +60,20 @@ android {
         }
     }
 
+    lintOptions {
+        checkReleaseBuilds false
+    }
+
     flavorDimensions "env"
 
     productFlavors {
-        DEV {
+        dev {
             dimension "env"
             applicationIdSuffix ".dev"
             resValue "string", "app_name", "[DEV]"
         }
         // 4
-        PROD {
+        prod {
             dimension "env"
             resValue "string", "app_name", "PROD"
         }
