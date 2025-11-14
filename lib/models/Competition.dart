@@ -1,17 +1,18 @@
 import 'Event.dart';
 
-class Competition{
+class Competition {
   late String id;
   late String name;
   late String stage;
   late List<Event> events;
-  Competition.fromJson(Map<String, dynamic> json){
+  Competition.fromJson(Map<String, dynamic> json) {
+    print(json);
     id = json['competition']['id'];
+    stage = "";
     name = json['competition']['name'];
-    stage = json['competition']['stage'] ?? '';
-    if(json['events'] != null){
+    if (json['events'] != null) {
       events = <Event>[];
-      json['events'].forEach((v){
+      json['events'].forEach((v) {
         events.add(Event.fromJson(v));
       });
     }
